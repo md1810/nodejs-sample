@@ -1,0 +1,13 @@
+name: STAGING BRANCH Build and Deploy
+on:
+ workflow_dispatch:
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.STAGING_API_KEY}}
+
+    steps:       
+    - name: Trigger Jenkins Job
+      run: curl --location --request POST 'https://0mhictbz0a.execute-api.us-east-1.amazonaws.com/v1' --header 'x-api-key:${{API_KEY}}'
